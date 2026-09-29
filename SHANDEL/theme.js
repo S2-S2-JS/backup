@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "enty-theme";
-  const AVATAR_KEY = "enty-avatars";
+  const AVATAR_KEY = "enty-avatars-SD";
   const BRAND_KEY = "enty-brand";
   const HASH_KEY = "theme";
 
