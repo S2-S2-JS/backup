@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7월 30일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Ivar","char2":"@Abagnale"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(카드를 들고 서 있다가 아무도 관심을 주지 않자 안 그런 척 내렸다.) 밤 산책 잃은 사람, 불면증이 있는 사람. 어쨌든 밤새 떠들 사람 없습니까? (큰 소리로 외치고 다닌다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오전 08:51</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">많이 심심해 보이는군. 내가 도와드릴 수 있을련지⋯⋯. (카드로 시선 떨군다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 12:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(내렸던 카드를 슬슬 들어올려 다시 보여준다.) 영광이 따로 없군요. 어떻게 도와주실 겁니까? (그리고 당신의 카드를 본 적 없는 것 같네요, 라고 덧붙였다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 12:47</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">담소도 좋지. 당장 나눌만한 것으로는⋯⋯ (제 카드를 들어 보여준다.) 이것이 가지는 의미일까. 세계라 했던가? 거창한 이름을 받았어.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 06:01</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그렇죠, 너무 거창해서 안 어울리지 않습니까? 혹시 거창한 게 탐나신다면 10랍에 팔겠습니다. (농담이다.) 당신은 뭔가요, (카드를 들여다본다.) ‘마술사’? 저보단 잘 어울리네요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 08:54</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">글쎄다, 나도 마술 부릴줄은 모른다는게 흠이군. (카드는 다시 손목과 옷의 틈새로 들어간다.) 이런 비유적인 것들과는 성미가 영 맞지를 않는다는 말이지. 유일하게 마음에 드는 건 1이라는 숫자 뿐이야. (흠.) 그러니 카드는 가지고 있게나, 다른 산다는 이가 있으면 10랍보다는 높은 금액으로 부르고.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 31일 오후 07:02</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">돈의 마술은 좀 부리시는 것 같던데요, '마담.' 위센 전쟁 때도 한탕 하셨잖습니까. 그동안 잊고 지냈는데, 한창 목재가 부족할 때 마치 목재를 수호하는 신처럼 일컬어지셨었죠. (1랍 지폐 다섯 장을 꺼낸다.) 이게 지금 제 전 재산입니다. 10랍이면 전 재산이 지금의 세 배가 되는 셈이죠.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 31일 오후 09:33</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">내 명성이 그렇게나 퍼진줄은 몰랐군. 하지만 틀렸어, 그걸 마술이라 부르는 건 내게 실례지. (오만한 말을 쉽게도 한다. 검지와 중지로 지폐 한 장을 빼내어 간다. “빌려가지.”) 마술은 우연한 것이잖나, 비밀스러운 것이고. 내 투자에는 단 한 푼의 우연도 있지 않거든. (지폐는 지나가던 고양이가 든 쟁반 위 음료로 들어간다. 경악한 고양이의 꼬리가 쭈뼛 서지만, 마담은 아랑곳 않은 채 품에서 수표책을 꺼내 한 장을 뜯는다. 그것을 이바르에게 건넨다.) ‘돈의 마술’을 부린다면 이런 것이겠지. 우연한 종이 한 장으로 네 인생을 바꿀 수 있는 것. 기회를 더욱 소중히 여겨보라는 말일세. 자네 카드는 자네가 매기는 값 이상의 가치를 가질 수 없을 테니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 01일 오후 02:09</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그럼 모든 건 완벽히 계산된 흐름이군요. 모르는 사람들이 멀리서 봤을 때나 마술처럼 느껴지는 거지. 그게 당신의 자존심이라고 봐도 무방하겠습니까? (전재산의 2할이 손에서 스리슬쩍 빠져나가는 것을 의아하게 지켜보았다. 이내 건네진 수표 한 장. 검지와 중지 사이에 수표를 끼워 팔랑거린다. 진위를 판별하려는 사람처럼 수표에 물끄러미 시선을 둔 채 말을 받는다.) 예전엔 돈이란 걸 봐도 별 감흥이 없었습니다. (돈이 모자란 적도, 인생을 바꿔야만 했던 적도 없기에.) 이제는 많은 돈을 보면 딸 생각이 나는군요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 01일 오후 08:14</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">나 같은 사람은 운이라는 단어를 그리 좋아하지 않아. (나 같은 사람이라는 건 뭘까?) 자존심이라면 자존심이겠지. 경은 자신의 자리를 위해 피땀 흘려 본 적 없나? 마술만큼 손쉬운 것이라 치부한다면, 내가 흘린 무엇이든 간에 수포로 돌아가는 기분이 들지 않겠느냐는 말이야. (금액 칸이 백지인 수표 밑에는 아바냘레의 성씨가 휘갈겨져 있다. 언제고 이럴 수 있도록 준비해 둔 것이 틀림없다.) 그건 자네가 간절해 본 적 없다는 뜻이지. 이제야 욕망이 생겼다는 뜻이야. 그래, 좋은 아버지가 되고 싶나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 04일 오전 04:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">흠…… 없습니다. (고민하는 모양은 냈지만 실제로는 그리 길게 고민할 것도 없는 부분이었다.) 제게는 제 자리가 정확하게 주어져 있었고, 그대로 살기만 하면 됐습니다. 당신은 당신의 자리를 스스로 파냈습니까? 제가 오늘 당신에게 받은 이 수표 한 장을 '엄청난 행운' 쯤으로 여기면 어쩌려고 그러십니까? (여전히 수표는 손끝 사이에 있다. 비어 있기에 무엇이든 될 수 있는 종이 한 장.) 네. 그런데…… 사람들이 자신의 본질에서 힘껏 도망치듯이, 저도 간절함 앞에서 도망쳐버린 것 같군요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 04일 오후 11:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">옷 입은 태를 보면 거렁뱅이는 아닌데, 가져온 재산이 겨우 5랍이라면 돈 없이 못 사는 부류도 아니고. 무엇보다 내가 네 전재산의 2할을 허공에 날렸는데도 무사태평인 걸 보면 그러한 행운에 연연하는 족속이 아니라는 뜻이겠지. 나는 그 수표를 쓰지 않으리라는 데에 걸었어. (만년필을 건넨다. “틀렸나?”) 뭐, 딸에게 가져간다면 허울좋은 말이라도 들을 수 있으려나 싶다만.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 05일 오후 07:57</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(만년필을 받아들고 손 안에서 한 번 돌린다.) 반은 맞습니다. 당신께서 읽은 건 제 태생이자 본질이라 볼 수 있겠습니다. 반면…… (찡그리듯 웃는다.) 제 간절함은 얕보신 것 같습니다. (갖고 태어난 적 없고, 함께 자라난 적 없는 낯선 간절함은 여전히 본연의 색처럼 묻어나지 않는다. 하지만 그게 이바르가 이라에게 허울 좋은 말이라도 듣기 위해 무엇이든 할 수 있다는 명제를 거짓으로 만들지는 않는다.) 그러니 반만 맞고 반은 틀렸습니다. (수표와 만년필을 내민다.) 돌려드리겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 06일 오전 01:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아쉬운 일이야. (흔쾌히 회수한다. 사용되지 않은 수표는 갈기갈기 찢긴다. 실수로라도 흘리는 일을 방지하기 위함이다. 똘똘 뭉친 종이 조각은 또 다른 불쌍한 고양이의 손에 들어간다. “버려주렴.”) 이거 원, 꼭 바라서는 안 될 것을 바라는 사람처럼 구는군. 딸이 아버지를 좋아하는 게 그렇게 어려울 일이란 말인가?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 07일 오전 12:00</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이라와는 사정이 복잡합니다. 엄밀히 혈연으로 따지자면 제가 아니라 루사나의 딸이니까요. 아직은 어려서, 호감을 사는 게 어렵지는 않지만…… (문득 묻는다.) 안눈치아타 씨는 아버지를 좋아했습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 07일 오후 07:59</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">과연, 그 아이에게는 자네가 이물질인 셈인가. (혀를 찬다.) 쉰을 넘어서까지 부모에게 연연하는 건 천치나 다름 없지. 그런 건 이제 기억나지 않는군.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 08일 오후 06:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이물질이라니 아프군요. (선선히 웃었다.) 그렇습니까? 제가 아는 대부분의 사람들은 아닌 척할 뿐 죽을 때까지 부모의 그림자 속에서 살덥니다. 천치가 많을 뿐이라 하시면 할 말은 없습니다만.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 09일 오후 01:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">너는 네 어미의 그림자를 벗어나지 못했나 보군. (입매를 비틀며 웃는다.) ⋯⋯내 부모가 내게 남긴 건 이름뿐이라네. 나는 어미아비 없이 홀로 자란 셈이지.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 09일 오후 08:58</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(치고 들어오는 말에 순간 어떤 반응을 해야 할지 모르는 듯한 표정을 지었다. 가까스로 평소의 미소를 얼굴 위에 붙인다.) 어제 극을 인상깊게 관람하신 모양이군요. 그럴지도 모르겠습니다. 평소에는 그 일에 대해서도, 어머니에 대해서도 떠올리지 않는데, 그래서 전혀 예상치 못한 터라 억울한 구석이 있습니다. (깜빡.) 그래서 남매의 정이 지독하군요. 팔레카가 풍족하다 해도 에아에서 부모 없는 아이들에게 척박하지 않은 땅은 없을 텐데요. (혼자 남겨진 어린아이 이야기에는 별 수 없이 마음이 약해지는 것이다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 10일 오전 02:20</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">나는 독립성을 말하고자 했네만, 자네는 그 행간에서 안타까이 여길 것을 찾는군. (크게 불쾌해하는 어투는 아니다. 건조한 감상.) 그 시절로 돌아가고 싶지 않다는 감상 정도는 남길 수 있겠다만, 난 나를 불쌍하다 생각한 적은 없네. 그때도 지금도 마찬가지야.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 10일 오전 04:48</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

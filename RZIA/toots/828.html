@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8월 28일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Ivar","char2":"@Abagnale"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(우리 아직 그런⋯⋯ 초기 단계에 있다고?)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:23</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(덜 왔다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:24</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">갈 길이 (많이) 멀군.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">길이 있다는 건 좋은 일 아니겠습니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">내 몫이 없다는 게 아쉬워.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">라 로데타를 떠도는 유령이 되러 갈까요? (농담이다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:31</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(깜빡인다.) 같이 가게?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:32</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그럼요. 기껏해야 한두 표 차이로 마술사를 살렸으니, 제가 살린 도시라고 봐도 무방하지 않습니까? (입은 살아서…)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:34</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">흠, 그러지 말고 자네도 망명 오게. 라 로데타는 열려 있거든. (농담?)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:41</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">라 로데타는 저 같은 무지한 치도 받아줍니까? 달까지 띄웠어야 할지도 모르겠습니다. (웃었다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:43</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">"제가 마지막으로 세상에 남길 수 있는 게 있다면 라 로데타를 이제는 빼놓기 어려울 것 같군요."</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:44</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">제 유산이라고 해서 저를 받아준다는 보장은 없거든요. 흠. 아니면 감동 받아서 말하시는 겁니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:50</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">감동 받아서 말하는 거지. 그렇게 생각해줄줄 몰랐거든. (동정표인줄 알았다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:51</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">말했지만 사감 담은 건 맞습니다. (하하.) 소르테 서밋의 사람들이 제게 준 영향을 근거로 소르테 서밋을 긍정해놓고, 이렇게까지 영향을 받은 점을 무시하는 선택을 하면 앞뒤가 안 맞지 않겠습니까? 대의를 떠나서 저 개인으로서 말입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:54</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(물끄러미 바라보다가 웃는 볼 쿡 찌른다.) 내가 라 로데타를 대신할 수는 없겠지만, 그럴 수만 있다면 너를 받아주고 싶군. 네가, 그것을⋯⋯ 아껴서 다행이라고 생각했어.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 12:58</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(볼 쿡 찔린다…) 제가 '라 로데타'라고 여기는 것의 절반 이상이 당신입니다. (나머지는 『태양』, 그리고 살바토레 데 아르벨리 등이 채우고 있다.) 아십니까? 그곳에 살았기 때문에 그 장소를 아낄 수도 있지만, 그곳에서 난 사람들을 아끼기 때문에 어떤 공간을 아끼게 되기도 합니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 01:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(하하.) 실은 몰라. 내가 라 로데타를 사랑한 건 그것 말고 사랑할 게 없었기 때문이거든. 관성이 굳어진 것만 같더구나. (살아 있는 세계는 도망치니까. 산 사람은 얼마든 떠날 수 있지만 땅만은 그곳에 붙박여 있음을 알기에 그렇다. 잠시 고개 돌려 시선을 피한다. 본인 턱을 감싸고 한쪽 볼을 연신 문지른다.) 음. ⋯⋯곤란하군. 네게 이런 말을 들을 때는 할 말이 잘 생각나지 않아⋯⋯.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 01:22</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">사람은 어떻게든 애착을 가질 대상을 필요로 하나 봅니다. 과정이야 어쨌든 라 로데타에 대한 당신의 사랑을 부정하는 사람은 아무도 없을 겁니다. (쳐다보며, 웃었다.) 그냥 웃어넘기셔도 됩니다. 아니면 핀잔을 주셔도 괜찮습니다. (의식조차 않고 이런 선택지만 내민다.) 이미 받아주겠다고도 하셨고요. 라 로데타의 갤러리에서 몹쓸 장난을 치는 유령으로 살아야겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:39</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯낯간지럽다는 소리잖나! 먼저 거부당한 것처럼 굴면 내가 섭섭해진단 말이야. 그리 웃지도 말아. (쏘아붙이고는 마른 세수를 한다. 간극.) 자격에 대한 말이었다. 그러니 내가, 이런 것들만으로 라 로데타를 대신해 말할 수는 없겠지만. 그럼에도 불구하고 '너의' 라 로데타를 대신해 말할 수는 있으리라고. 그것이 틀림없이 너를 받아줄 것이라고⋯⋯. (한숨.) 그러니 물러나지 마. 응?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 01:05</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

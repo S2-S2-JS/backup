@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>825-3</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Ivar","char2":"@Abagnale"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그렇군. (4시간 만에 지난 며칠 동안 어떤 일이 있었을지 완벽하게 파악한 기분이 된다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:34</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">뭘 깨달으신 겁니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">처음에는 에덴을 동정했고, 그 후에는 카인을 동정했다⋯⋯.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">저는 왜 없습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:36</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">자네는 남들에게 고난을 주는 쪽인 것 같네.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:39</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">고난이 없으면 지루하잖습니까. 누군가는 떠안아야 할 책임입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:41</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">농담 두 번 했다가는 누구 하나 죽어 나가겠더군. (이미 죽기는 했다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:45</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">흠. (뭔가 말하려다가 관둔다.) 멀리 떨어집시다. 너무 가까이 있으니까 농담을 못 하겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:48</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">흠. (가까이 다가간다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">제 농담이 어지간히 싫으시군요? (물러난다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:50</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">꼭 그런 건 아니네만, 가까이 있으면 무슨 소리가 나는지 궁금해서.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:51</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">누르면 소리 나는 애들 장난감처럼 말하십니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 03:53</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">대충 비슷한 거 아니었나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:00</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">짓궂어지셨습니다. (그냥 웃는다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:03</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯. (빤히 본다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……? 뭡니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">죄책감이 들어서 미안하다고 말해야 할 것 같군.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">뭐가 미안합니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:09</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">튀어오르라고 한 농담에 곧이곧대로 눌려서 마음이 편치 않다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:12</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">제가 부인께 그렇게 튀어오른 적이 있습니까? 늘 말은 잘 들었습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:15</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(맞는 말이다.) 요 근래 서운할 일이 많아서 체감이 안 됐다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:19</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그래요, 솔직히 양심이 쑤셔서 튀어오를 것도 납작하게 엎드려 있게 됩니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:22</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">자네는 불쌍한 말을 한 대 쥐어박고 싶게 하는 재주가 있어.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">동정하는 것보다 그게 마음이 편하지 않습니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:31</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(침묵한다.) 양심 한 번만 더 쑤시게 해다오.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:47</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">찔려 드리겠습니다. 해보시죠.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">서운해⋯⋯.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:50</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(가슴을 열고 푹 찔렸다. 그런데 찔릴 구석이 한둘이 아니라 어딜 찔려야 하는 건지도 모르겠다.) 어떤 점이요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 04:55</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯동정하지 말라고 밀쳐내는 점이. (본인도 딱히 그 지적에서 자유롭지는 않다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 05:19</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(침묵.) 다시 만나게 된다면 비난이 쏟아질 거라고 생각했습니다. 오히려 제가 당신을 불쌍히 여겨야죠, 그렇지 않습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 05:25</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">너는⋯⋯ (열린 가슴을 손가락으로 꾹 누른다. 고동이 느껴질리 없다는 건 안다.) 내가 너를 미워할 때보다도 불쌍히 여길 때 어쩔 줄을 몰라 하던 걸.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 05:51</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(움직이지 않고 가만히 바라본다.) 그걸 알면서도 서운하십니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 05:57</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그래, 결국 화풀이지. 그러니 화라도 내보란 말이다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 05:59</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……어느 지점에서 화를 내야 할지 잘 모르겠습니다. 하나도 빼놓지 않고 모든 게 잘못되어 버렸을 땐, 무언가를 바로잡는 것보다 포기하는 게 빠릅니다. (위센 전쟁의 한복판에서 이바르와 액슬이 서로에게 총구를 겨누고 그러했듯이.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 06:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">내가 네 감정을 가볍게 여기는 것, 너를 '누르면 소리나는 장난감' 치부하는 것, 네가 괴로워야 직성이 풀리는 형편 없는 인간인 것, 혹은 그 전부에 대하여 말이다. (언젠가 전장의 비유를 든 것이 무색하게도 그는 날것의 대립에 서툴다. 포기보다도 익숙한 건 단물 빠진 감정에서 고무내가 날 때까지 씹는 것.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 06:18</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">모두 끝났다고 단정짓는 네가 원망스러워.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 06:19</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(그는 은연중에 죽음이 기존의 이바르 란첸도르프와 이 유령을 단절했다고 느꼈다. 이러한 감각을 지금에서야 깨달았다. 이유인즉 형편없게도 당신 때문에 루사나가 떠올랐기 때문이다. 며칠 전의 자신과, 지금의 자신이 연속성을 가진 존재라는 사실을 기억이 증명한다. 따지자면 이것은 발전에 가까웠는데, 나오는 말은 반동이다.) 그 머리핀은 본래 루사나의 유품입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 06:32</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯내가 어떻게 해야 좋을까, 이바르. 나는 도통 모르겠으니 네가 말해보도록 해. (검에는 검을, 독에는 독을. 상처 입히는 자는 상처 입을 각오를 해야만 한다는 사실을 모르지 않는다. 헛숨을 들이키고, 길게 내쉰다. 품은 검의 수와 칼 꽂힌 심장에 대해 생각한다. 유감스럽게도 마음만은 파랗게 빛나는 지팡이 따위로 지킬 수 없다.) 네가 내게서 그녀의 망령을 찾고 있음을 모르는 게 아냐. (어조와 비견되는 성마른 손짓에 머리카락이 엉킨다. 동그랗게 말린 머리 반절을 풀어헤치고 나면 아슬아슬하게 매달린 머리핀이 손끝에 걸린다. 그것을 말아쥔다.) ⋯⋯그렇다 한들 내가 무슨 말을 할 수가 있단 말야? 이제 그만 네게 돌려줘야 하나? 네게 감정을 묻는 건 그만둘까, 혹은 아예 그녀 행세를 해줘야만 할까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 06:54</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……그걸 준 건 당신에게 줄 수 있는 게 그것뿐이었기 때문입니다. (오로지 감정이 아닌 것만 쉽게 입에 담을 수 있다. 그는 자신의 잔이 끝까지 차오른 것을 알고 있다. 잔을 기울였을 때 무엇이 어디까지 쏟아질지 가늠하지 못할 뿐이다. 그 중에 무엇이 당신이 원할 만한 것인지도, 잘 모르겠다. 머리핀을 풀어 손에 쥐는 모습을 물끄러미 지켜본다. 그는 결국 정리하기를 포기하고 뒤엉킨 서랍을 그대로 열어젖혔다. 높낮이 없는 목소리가 두서없는 질문들을 내던진다.) 왜 죽었습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 07:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">당신은 죽지 않을 수도 있었습니다. 당신이 죽고 나면 그가 고통스럽게 오열할 걸 알면서 그 사람에게 동전은 왜 줬습니까? 제게 배신감을 느꼈습니까? 저는 후회해야 했습니까? 저는 항상 당신 곁에 있었지만, 당신이 '보고 싶었습니다'. 제가 잘못되었다고 생각하지는 않습니다. 누군가 주세페 아바냘레를 진정으로 모욕한다면 당신도 목숨 따위를 잴 틈 없이 덤볐을 겁니다. 제가 저 자신이 아니었더라면 그러지 않았을까요? 견딜 수 있었을까요? 내가 살아온 궤적을 모두 잊어버리고 당신에게 돌아와 절대로 떠나지 않겠다고 약속하기 위해 이 타들어가는 영혼을 뭉개버려야 했습니까? 제가 그렇게 했더라면 당신도 살아 있었을까요? 그러면 우리는 이곳을 나가서 당신이 운명을 다할 때까지 서로에게 의지할 수 있었을지도 모르겠습니다. 그렇게 생각하면 저 자신을 증오하지 않을 수 없습니다. (수많은 질문들 사이 어디서부터 울고 있었는지 그는 눈치채지도 못했다. 목소리가 떨린다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 07:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">저라면…… 제가 당신이라면 저를 절대로 용서하지 않을 겁니다. 절대로! 절대로……. (당연히 루사나가 떠오르겠지, 그건 당신이 그녀를 닮아서가 아니라, 이 비참함이 너무나 낯익기 때문이다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 07:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아! 이바르, 날 너무 괴롭게 만들지는 마. 난 더 이상 원망도 설움도 떠안고 싶지 않아. 내가 죽음의 안식을 취할 수 있게 해줘. 내가 시간의 품으로, 주세페의 곁으로 돌아갈 때까지⋯⋯. (문득 목이 메어 목에서부터 가슴께까지의 살을 잡히는 대로 쓸어내린다.) 닿을 리 없는 공기가, 바람이 목을 옥죄는 것 같은데 마구잡이로 쥐어뜯어도 도저히 잡히는 것이 없다. 목을 부여잡고 헐떡인다. 숨이 습관에 불과함을 모르지 않음에도 정신이 아득하게 멀어진다. 주먹을 말아쥐면 차가운 머리핀이 얄궂게 손바닥을 파고든다.) 내가 청했나, 나를 아끼라고? 내 죽음에 고통스러워하라고, 오열하라고, 견딜 수 없을 것처럼 굴라고, 내가 바란 적 있던가? 다들 제멋대로지! 부탁하지도 않은 애정을 쥐여 주고, 멋대로 괴로워하고, 날 괴롭게 만들고! 사랑하려 하면 나를 떠나. (그러나 괴로운 것은 그 또한 그들에게 애정을 품었기 때문이다. ‘괴로워 말라’는 말이 얼마나 무책임할 수 있는지, 모르지 않는다. 하지만 그런 말이라도 하지 않고서는 도저히 생의 무게를 견딜 수가 없다. 인정할 수 없다!) 아, 정말 애썼단 말이야. 약속을 지키기 위해, 최선을 다했단 말이다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 09:00</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">네가 정말 미웠던 건 떠났기 때문이 아니야. 날 무엇보다도 괴롭게 한 건, 네가 결국 떠나지 못했다는 사실이었어. 왜 내게 머리핀을, 지폐 다섯 장을 쥐여 줬어? 왜 내 손을 잡았고, 왜 수표 한 장을 뜯어 갔어? 망자라면 망자답게 떠났어야지. 타들어가는 영혼이라면 그대로 휘발되어 버렸어야지! (이바르의 양 어깨를 거세게 밀쳐 버린다. 그러고도 분이 풀리지 않는다는 듯 주먹으로 그의 가슴을 내리쳤다가, 휑하니 몸을 돌려 떠난다. 그러나 죽은 자가 갈 곳은 없고, 그의 걸음은 주위를 한참 맴도는 데에 그친다. 혼잣말을 하듯이 본인 머리카락을 헝클이며 중얼거린다.) 그랬다면 너를 아주 못된 남자라 불렀겠지. 아, 야속하기도 해라. 애초에 그런 남자를 믿은 게 잘못이었다고. 떠날 줄은 진즉에 알고 있었다고, 그렇게 죽어버리다니 꼴도 좋다고. 너까짓 것의 죽음은 하나도 슬프지 않다고, 기억할 가치조차도 없다고. 그렇게, 그렇게⋯⋯. (젠장! 그럴 가치 없는 남자에게 제대로 홀려버린 것이 틀림없다. 암만 힘을 쥐어도 그 자그맣고 보잘것없는 복사꽃 머리핀을 놓을 수가 없다. 문득 눈을 맞춘다.) 아, 이바르. 너 자신이지 말라 한 적 없어. 네가 잘못되었다 한 적 없다. 루사나를 위해 목숨 잴 틈 없이 덤빈 게, 살아온 궤적을 잊지 않은 게, 날 떠난 게, 네 잘못이라 한 적 없어.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 09:01</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(그리고 깨닫는다. 얼굴을 사정없이 일그러뜨린다.) 그 모든 이유 때문에 널 증오하는 건 누구도 아닌 너라고⋯⋯. 널 도저히 용서할 수 없는 건 다름 아닌 너야. 내가 혹여나 널 동정하기라도, 용서하기라도 하는 날에는 네 스스로가 괴로워서 도저히 견딜 수가 없을까 봐!</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 09:03</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그러면 이제 이루어질 일 없는 미래를 꿈꾸게 될까 봐, 후회하게 될까 봐. (숨,) ⋯⋯하지만 아니야, 이바르. 네가 나를 위해 죽지 않았듯이, 나는 너를 위해 죽지 않았다. 자르갈과 레이의, 또 나의 의지를 욕보이지 마. 널 괴롭게 하는 건 내가 아닌 너야.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오후 09:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">https://aquamarine-robe-649.notion.site/3c8361ad6ac880dcb1a1d4138dc5bf9f?source=copy_link저를…… 용서하시겠습니까? 당신은…… 그럴 수 있습니까. (뇌까리다가 당신에게 성큼 다가온다. 하염없이 머리핀을 쥐고 있는 손을 감싼다.) ……당신이 옳습니다. 제 머리는 증오로 가득차 있습니다. 이제 제게 남은 건 이 초라한 영혼뿐입니다. 안눈치아타. (느릿하게 깜빡인다.) 용서를 구합니다. ……그것을 받을 수 있다면, 저는 이 보잘것없는 마음을 드리겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오전 08:46</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">바보같은 남자⋯⋯.https://posty.pe/pdodhdlc</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 01:38</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(감싸오는 손을 거부하지 않는다. 신발코가 닿을 만한 거리까지 한 발짝 더 다가간다. 변명을 붙이자면 눈이 흐려서 그를 더 자세히 보고 싶었기 때문이고, 솔직하게 말하자면, 그냥 그러고 싶었다. 합당한 논리나 마땅한 사유는 이제 그다지 중요하지 않다. 빈 손을 뻗어 그의 눈가에 맺힌 눈물을 쓴다.) 네가 남은 게 초라한 영혼 뿐이라면, 마음을 준다는 건 네 전부를 준다는 것이나 진배 없군. (손가락에 매달린 물기를 입술로 거둔다. 망자의 마음에서는 투명하고 소금기 없는 맛이 난다.) 더 많은 것을 바라도 좋을 텐데.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 01:38</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(침묵한다.) 너를 용서한다, 이바르. 네가 저지른 모든 죄와 죄 아닌 것에 대해, 그리고 너에 대해⋯⋯. 나는 연민한다. 그리고 이해해.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 01:41</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(꽉 그러쥐는 대신 하염없이 바라보기만 한다.) 바람을 무수히 늘어놓을 수도 있지만, 개중 가장 중요한 건 용서였던 것 같습니다. (그는 기대만큼 만족스러운 이해를 손에 넣었다. 그러나 예상과 다르게 안눈치아타가 건넨 이해란 마디에 못을 박아 세계에 꽂아넣는 일이 아니었다. 그것은 햇살 좋은 날 높은 하늘 아래 널린 이불처럼, 부드러운 감촉과 따뜻한 향을 가졌다.) ……당신의 연민을 받아들입니다, 안눈치아타. 그리고 이해도. (그 말을 내뱉고 이바르는 약간 찡그렸다. 돌이켜 보면 연민도 이해도 받아들일 수 없었던 건 부정확함 때문이 아니라, 용서받을 수 있다는 믿음이 없었기 때문이다.) 그러니 받아주시겠습니까. 먼 옛날부터 당신을 이해할 수밖에 없었고, 그래서 당신을 나 자신만큼 불쌍히 여겼으며, 그래서…… 마치 나처럼 스스로를 영영 용서하지 못하는 당신을 보고, 섣불리 당신을 용서해주고 싶었다는, 이 마음을.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 02:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯이미 내 것이라 말했으니 허락은 구하지 않겠어. (몸과 몸을 겹치고 빈손으로 그의 어깨를 붙잡아 끌어당긴다. 껴안은 채로 젖은 뺨에 볼을 기댄다. 손이 등을 천천히 쓸어내린다. 잡힌 손을 가슴과 가까이 쥔다.) 이바르. (너는 내게로 돌아오라, 나는 네게로 돌아간다. 탐욕과 영광과 파멸을 쥐고, 해묵은 애정과 실낱같은 희망을 쥐고. 하지만 죽음 끝에 깨달은 것이 있다면 그가 그녀를 기다려주지 않았다는 것이다. 놓지 못한 것은 안눈치아타라.) 내가 그를 떠나보내도 될까? 그의 목소리가 더 이상 기억나지 않아, 다만 그가 남긴 말이 도저히 잊히지 않는데. 그를 놓치면 정말, 영영 잃어버리게 될 것만 같아. 그에게 죄를 짓는 기분이 든다. (몸이 떨린다. 용서할 수 있으리라 기대한 적 없다.) 그러니 네가 나 대신 답해줘. 내가⋯ (흐느낌에 가깝게 속삭인다.) ⋯용서받아도 되는지.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 02:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(뺨에는 뺨을, 손에는 손을. 비스듬히 겹친다. 언젠가 해질녘 기울어지는 해가 창틀을 매만지던 것처럼.) ……이상한 말입니다만. (손에 힘이 들어간다.) 죽음을 전후해 저의 정신은 혼곤하기 그지없었습니다. 그때 했던 생각들은 모두 안개처럼 흐릿하고 종잡을 수 없는 종류입니다만. (입술을 달싹이더니 잠시 침묵했다.) ……저는 그때, 주세페 씨가 당신을 돌아보지 못하게 한 까닭을 이해할 수 있겠다고 생각했습니다. (다시 간극.) 어떻게 설명해야 좋을지 모르겠습니다. 당신이 피 흘리는 구두를 신고 있다는 걸 알면서도 영원히 돌아보지 않고 앞으로 가기를 바라는 마음을. ……아니, 사실은 설명하고 싶지 않습니다. (흐느끼는 당신을 감싸며 그는 애매하게 미소지었다. 변명을 강구하는 사람처럼.) 그 무한한 이기심을 당신에게 알려주고 싶지 않습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 03:48</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">안눈치아타. 안눈치아타 아바냘레…… (다정한 목소리로 그는 말했다. 주세페의 음성을 상상하면서.) 주세페 아바냘레는 당신을 사랑했습니다. 그는 당신에게 돌이킬 수 없는 상처를 줬다는 사실에서 도망쳤습니다. 너무 간절했기 때문일 것입니다. 그는 당신이 슬픔을 모른다고 가정했습니다. 그러지 않고는 그가 그 자신이어서 영영 당신을 두고 떠나게 되었다는 사실을 스스로 용서할 수 없었기 때문입니다. (숨을 들이마신다. 폐부에 오랫동안 뭉쳐둔 말을 실타래처럼 꺼낸다.) 당신은 그를 죽이지 않았습니다. 이제서야 마침내 그를 알게 된 저는 그를 대신해, 당신을 용서합니다. ……그러니까 당신도…… 부디 그를 용서해 주세요. 그러면, 그는 만족하며 떠날 것입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 03:48</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(그를 쥐고 놓지 못하던 시간을 회고한다. 누군가 그를 '느꼈다'고 생각했을 때 반발할 수밖에 없었던 건 그녀 본인조차도 그가 누군지에 대한 확신이 없었기 때문이다. 그는 아무것도 아니야, 아니, 그는 모든 것이야. 기어코 그에 대한 미련을 놓아주고서야, 안눈치아타는 타인의 시선을 통해 주세페 아바냘레를 이해한다. 그제서야 그를 온전히 마주한 것만 같은 기분이 든다. 그는 우습게도 후련함을 느낀다.) 아하하⋯⋯. (과연, 그건 부드러운 감촉과 따뜻한 향을 가졌다.) 정말 이상한 말이군. 이상해. ⋯⋯그는 내게 삶에 충실하라고 말했다. 또 즐기라 말했지, 운명은 즐기는 이에게 보답한다고. ("그러지 못하여 운명이 나를 벌했나 보군.") 오래토록 그것이 저주인 줄 알았어. 그게 아니었던 거야⋯⋯. (다친 짐승이 온기를 찾듯이 이바르의 품을 파고든다. 마음이 보잘것없어서 울지 못했던 시간을 기억한다. 왠지, 이제야만은 가슴에 난 구멍을 겹치면 바람소리 대신 심장 고동이 들릴 것만 같을 것 같았다.) 용서는 이렇게나 쉬웠던 것이군. 이상하지, 이바르.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 04:47</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(간극이 길다.) 그건 네가 그만큼이나 나를 아낀다는 말처럼 들려⋯⋯.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 26일 오후 04:47</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(품에 파고드는 당신의 어깨를 잡아 끌어당긴다. 그러면 두 영혼의 심장이 때맞춰 맥동한다.) 먼 길을 돌아왔군요. (눈을 감는다. 긴 간극 끝에.) ……그렇게까지 이상할 건 없지 않습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 01:31</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯그걸 내게 묻는다면 이상할 이유를 열 가지는 넘게 댈 수 있어. (괜한 소리다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 01:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그럼 이제부터 열 가지 다 들어보겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 01:50</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(가볍게 밀쳐서 떼어내고는 어깨 아프지 않게 때린다.) 다섯 가지로 하지.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 01:56</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">하하하. (기분 좋게 웃었다.) 그럼 다섯 가지 다 반박해 드리겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 02:14</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯. (더 세게 때렸다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 02:17</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이제 슬슬 아픕니다? (완전히 엄살이다. 한 발짝 정도 밀려난 채로 마주본다.) 머리가 엉망이 됐군요. 정리해 드릴까요?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 02:28</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(그제서야 간절하게 쥐고 있던 머리핀을 놓아준다. 피가 돌았다면 따끈해졌을 것이다. 자국난 손바닥에 올려 내민다.) 그래, 부탁하마.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 02:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(머리핀을 받아들고 만지작거리다가 입을 뗀다.) 정말 이걸로 괜찮습니까? (대안은 없다.) 더 나은 게 있었다면 좋았을 겁니다. (뒤돌아 보세요, 덧붙였다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오전 11:46</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(상대 손에 넘어간 머리핀을 물끄러미 내려다본다. 손을 감싸 가만히 주먹으로 말게 한다.) 첫 번째 이유는 자네가 죽은 여자 머리핀을 산 사람에게 주는 남자라는 데에 있지. (더 나은 게 없음을 안다. 뒤를 돈다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 12:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(저항 없이 머리핀을 둥글게 말아 쥔다.) 그렇다면 제 첫 번째 반박은 그렇게 뻔뻔한 놈이라 가능하다는 겁니다. (잡을 수 있는 빗도 무엇도 없어서, 머리핀과 손으로 잘 해보는 수밖에 없다. 아무리 해도 깔끔하게 정리되진 않을 테다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 12:24</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">두 번째 이유는 그게 자네에게 남은 전부라는 데에 있어. 그러니 나는 네게 화낼 수조차도 없고. (안눈치아타가 스스로 묶는 것보다는 나을 테다. 손길을 느끼며 눈을 감는다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 12:48</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">슬슬 마음에 안 드는 점을 늘어놓는 시간이 되지 않았습니까? 이상한 구석이 없습니다만. (그는 달가워 보인다. 천천히 조심스럽게 머리의 결을 다시 정리한다. 누군가의 머리를 정리해주는 게 꽤 익숙한 사람 같은 손길이었다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 01:12</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯그렇다면 세 번째 이유는 내가 자네를 가까이한 기억보다 밀어낸 기억이 더 많다는 걸세. 약식 장례에도 참석하지 않았지 않나. (모가 얇아 뒤엉킨 부분이 많다. 이바르의 손가락에도 쉽게 얽힐 테다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 01:46</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(아프지 않게 살살 엉킨 부분을 빼낸다.) ……세 번째 반박은 그때 당신이 어디에서 뭘 하고 있었는지 제가 다 봤다는 겁니다. (이바르는 그것을 장례로 해석했다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 02:25</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯음침하기는. (어깨를 딱딱하게 굳혔다가, 천천히 힘을 푼다. 고민하느라 고개를 슬쩍 숙인다.) 네 번째는⋯⋯ (간극.) 내가 파괴적인 인간이라는 거야. (부연하지 않는다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 04:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(잠자코 웃으며 머리를 마저 정리한다.) 우연이군요. 저도 비슷합니다. 그래서 당신을 알아본 걸지도 모르죠. (처음처럼 아예 머리를 묶어 올리는 대신 반쯤만 묶어 머리핀으로 고정했다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 07:07</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">말은 잘해. (끝났나? 머리카락 밑단 쓸어본다.) 다섯 번째⋯⋯ 마지막인가. 기대하는 말이라도 있어?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 08:10</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">말도 못하면 봐줄 만한 구석이 없잖습니까. (다 됐습니다, 하고 손을 뗀다.) 제가 기대하길 기대하십니까? (반문한다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 08:41</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">성년 이후로는 이렇게 묶어본 적이 없네만⋯⋯. (좋다는 건지 싫다는 건지 알 수가 없다. 다시 마주 보는 대신 멋쩍게 끄트머리 매만진다.) "그렇다"고 한다면 뭐라 할 셈인데?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 09:36</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">귀엽지 않습니까? 이라에게 자주 이렇게 묶어줬습니다. (웃었다.) 기대에 부응해야죠.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 09:40</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">나를 얼마나⋯⋯ 나잇값 못하는 사람으로 만들 셈이지? (그렇다고 해서 푸는 것도 아니다. 마지 못한 얼굴로 뒤 돈다.) 말해봐.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 10:23</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">여섯 살로 만들 겁니다. (농담하며 뒤 돌기를 기다린다. 어색한 표정이시군.) 잘 어울리는데요. 흠…… "마음에 들어서 이상하다" 는 어떠십니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 10:36</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(정색한다.) 다섯 번째는 자네 취향이 이상하다는 걸세.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 11:01</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아하. 이건 어쩔 수 없군요. 패배에 승복합니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 27일 오후 11:43</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이것 하나만 반박하지 않으면 내가 뭐가 되나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오전 01:54</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이상한 취향의 대상이 되십니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:20</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">가끔은 나 자신이 괘씸해서 견딜 수 없다는 생각이 든다⋯⋯.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그건 왜입니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:41</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">마음에 들어서.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:42</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">정말 취향 이상하시군요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:42</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">설마 자네만 하겠나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:44</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">제가 모두 져 드렸지만 (언제, 뭘?) 이건 안 되겠습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 09:44</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">언제, 뭘? (굳이 물어본다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 28일 오후 10:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">거기까진 생각해두지 않았습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 01:53</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그래⋯⋯. 봐줬다. (뭘?)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 01:54</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">네. 그럼 이제 다섯 가지 이유에 모두 반박당하신 소감은 어떻습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 01:57</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">네 스스로 패배에 승복한다 인정했으니 말하지 않겠어.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 01:59</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">흠. 이제 궁금해서 어쩔 줄 몰라해야 하는 타이밍입니까? (뭔가를 학습하고 있다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 02:02</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그런 말을 안 하면 되는 타이밍일세.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 02:04</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(하하.) 그래도 모든 게 닫히기 전엔 말해주실 것 같습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 02:08</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯너는 내게 확신을 가지게 해.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 02:19</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(웃었다.) 그럼 합격이군요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 29일 오전 02:24</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

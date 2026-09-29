@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8월 25일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Ivar","char2":"@Abagnale"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(아무것도 준비되지 않은 사람처럼 서 있다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:16</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이바르 란첸도르프.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:18</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……부르지 마세요. 당신이 저를 부를 수 있다는 사실을 믿기 싫습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:19</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯. (무언가 말하려는 것처럼 입을 달싹였다가, 다시 다물었다가, 잠시 먼 허공을 본다. 한 손을 입가에 대고 오래 고민한다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:26</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그런 얼굴을 해서야 원망도 편치 않군.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:26</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……이틀 치의 원망이라면 달게 받겠습니다. (살아서 보인 적 없는 표정이다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:33</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이바르 란첸도르프, (낮은 목소리로 재차 부른다.) 네게 부탁 하나를 할 거야. 거절한다면 사 년 몫의 원망을 주마.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:43</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">제가 이제 와서 당신에게 무엇을 해드릴 수 있습니까? (형벌을 기다리는 듯한 긴 침묵이다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:45</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/9Ccmwyp.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">자⋯⋯. 내게 어깨를 빌려주렴.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:48</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/IajptP4.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(그의 표정은 말한다. 제게 그럴 자격이 있습니까. 저를 용서하십니까? 나는 용서를 모르기에 여기에 있고, 당신은 용서를 알기에 여기에 있는 까닭입니까? 그러나 나란히 누운 두 구의 시체를 파헤쳐 무엇하랴.) 이미 당신의 것입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 25일 오전 10:55</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

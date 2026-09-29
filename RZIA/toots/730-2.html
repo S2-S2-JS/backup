@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>730-2</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Ivar","char2":"@Abagnale"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">젊은 사람들이 이리 나약해서야. 새벽은 이제 시작인데 말이지⋯⋯. (잘 자라.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 12:25</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">역시 나약하지 않은 젊은이 쪽이 좀 더 호감이시죠, 부인?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 12:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">더할 나위 없지. 왜, 총애를 받고 싶은가?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 12:57</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">어려운 질문이군요. 따지자면 그렇습니다만, 총애를 받고 싶다고 기어오는 사람이 당신에게는 이 호텔의 고양이만큼 널렸을 테니 그렇게 말했다가는 듣자마자 질리실 것 같아서 말입니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 30일 오후 01:20</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">어렵게 생각하기 때문에 어려워지는 거야. 누구에게나 공평하게 적용되는 총애의 공식이라는게 있지. 사람은 가지지 못한 것을 갈망하는 법이라고 호사가들이 논하던데⋯⋯ 수수께끼를 내지. 나같은 늙은이가 가지지 못한 것은 무엇이겠나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 31일 오후 06:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이런, 너무 복잡하게 구는 것처럼 보이고 싶지 않았는데요. 당신이 가지지 못한 것이라. 속물적인 사람이라면 누구나 내놓을 법한 뻔한 답과, 당신에 대해 아무것도 모르는 인간의 어설픈 추측 중 어느 쪽을 듣고 싶으십니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 7월 31일 오후 09:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">글쎄, 그 사이에서 고민하는 과정까지가 재롱이라고 말하고 싶다만. (고민하는 시늉조차 안하고 손가락 까닥인다.) 후자.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 01일 오전 04:20</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">압죠, 압니다. 하지만 재롱이 너무 길어지면 질리는 법입니다. 고민조차 않으시는군요? (느릿하게 말을 잇는다.) 전자를 고르셨다면 '늙은이'에게 없는 것은 필히 젊음이고, '아바냘레 부인'에게 없는 건 인정머리라고 했을 겁니다. 그것이 당신을 포장하는 세간의 평가니까요. (고개를 기울였다. 생각에 잠긴 것 같기도 하고, 그저 조금 삐딱해 보이기도 했다.) 으레 흥미로운 사람들은 포장을 섬세하게 고릅니다. 당신이 무엇을 가지지 못했는지는 의미가 없고, 당신이 가지고 싶었지만 가지지 못한 것에만 의미가 있죠. 거창하게 늘어놔봤자 결론의 피상적임을 덮을 수는 없군요. 돈만 쫓는 여자가 갖지 못한 건 돈으로 살 수 없는 것일 거라고 추측합니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 01일 오후 02:20</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">돈만 좇는 여자라. 그게 자네의 평가인가? ("아니면 세간의 평가를 되풀이할 뿐인가?" 기분 상한 기색은 없다. 슬며시 웃는다.) 내게는 두 답변 사이에 큰 차이가 없다고 느껴져. 젊음과 인격은 모두 돈으로 구할 수 없는 것이고, 나는 피로 목욕을 하면 지나간 시간을 구할 수 있다고 믿을 만큼 아둔하지 않지. 자네또한 그리 판단할 만큼 눈이 흐리지 않을 테고. ⋯⋯그렇다면, 자네가 추측한 돈으로 살 수 없는 것은 무엇인가? 진부하지 않은 답변을 내놓을 수 있겠나?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 04일 오전 03:59</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그보다는, 당신이 세상에 내보인 껍데기를 존중하기 위한 표현입니다. 잘 고른 포장을 함부로 벗겨버리면 싫어하는 사람이 많기 때문입니다. 즉 일부러 겉돌고 있습니다만, 이렇게 선뜻 답을 내놓으라 하시는군요. (비죽 웃는다.) 글쎄요, 안눈치아타 씨. 저는 주세페 아바냘레의 그림에서 완전한 타자가 된 자신을 봅니다. 그림을 그리던 그와 그림을 감상하는 제가 하나로 겹쳐, 그림 속 세계에서 쫓겨나는 겁니다. 저는 그림 한 장으로 그가 저와 같은 것을 느꼈다고 확신하고, 그가 태어나서, 살아가면서, 죽으면서 또 무엇을 느꼈는지 알고 싶어합니다. 그가 이 세상에 남겨둔 감정에 심장이 덜컹거리기 때문입니다. 이 기분이 어디에서 온 건지 알고 싶습니다. 그리고 안눈치아타, 그의 혈육인 당신이…… 바라는 것이, 제가 바라는 것과 일치하면 좋겠다고도 생각하고 있습니다.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 04일 오후 01:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">추상이니 은유니, 피상적인 것들과는 맞지 않아서 말이다. (예술로 먹고살던 사람이 할 말인가?) 주세페 아바냘레가 죽어서 남긴 건 그림 몇 장과 나뿐이지. 하지만 그림은 말을 할 수 없으니, 네게 답을 줄 수 있는 것 또한 나뿐이군. (먼 곳으로 시선을 돌린다. 한순간에 흥미를 잃기라도 한 사람처럼 구는 꼴이다. 눈을 감으면 선명하게 떠오르는 그림 한 장이 있는데, 그에 대해 유창한 감상을 품기에는 너무 오랜 시간이 지난 것 같기도 하다. 감히 말하자면, 안눈치아타는 그 안에 담긴 감정을 느낄 수 없는 사람이다.) ⋯⋯나는 자네가 마음에 드네, 란첸도르프. 그러니 충고차 알려 주도록 하지. (한 발짝 성큼 다가선다. 어깨를 쥐고 귀에 입을 댄다. 아주 오랜 비밀을 꺼내듯이 속삭인다.) 내 오라버니는 그럴 만한 가치가 없는 사람이야. (그리고 멀어진다.) 망자의 그림을 헤집지 말게, 그 안에는 아무것도 없어. 고작 그림 한 장으로 연결되었음을 느낀다면 오만이지. (그건 안눈치아타 아바냘레가 그 그림 속에서 아무것도 찾지 못했기 때문이다. 웃지 않는 부인은 딱 나이에 걸맞게 노쇠해 보인다. 상황에 맞지 않는 성마른 적개심 따위가 눈을 스쳐지나간다.) 나는 이리 말할 수 있지, 그를 누구보다도 잘 알고 있는 건 나니까. (그러니까, 그는⋯⋯ 당신을 질투하고 있다!)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 05일 오후 04:35</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(귓가에 새겨지는 비밀을 그는 모호한 표정으로 듣고 있다. 밀물과 썰물처럼 다가왔다가 멀어지는 걸음도 그저 관찰하는 듯했다. 그러나 당신이 말을 마치자마자 입을 연 그의 대답은 이렇다.) ……저는 그를 알아야 합니다. (간극, 호흡.) 포기하고 있었지만, 여기에서 당신을 만난 이상 그렇게 되어 버렸습니다. 저는 그런 것을 다른 어디에서 마주쳐본 적이 없습니다. (이바르는 자신이 미처 모르는 것을 찾고 있다. 그렇기에 정확히 왜 그것을 가져야 하는지도 설명할 수 없다.) 당신이야말로 주세페 씨의 그림에 가장 높은 값을 매겨 팔아야 하는 사람입니다. 그런데 왜. (붓질은커녕 총질만 해본 남자에겐 오만이라는 평가에 반박할 근거가 없다.) 왜 제가 본 것을 부정하는 겁니까? (목소리에는 확신과 혼란, 그리고 실패한 기대가 뒤섞여 있다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 06일 오전 01:37</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">하! (콧웃음 친다. “말귀를 못 알아듣는군.”) 세상에 대체될 수 없는 예술가는 없어. 주세페는 그중에서도 가장 먼저 대체된 이들 중 하나지. 난 내가 매길 수 있는 가장 높은 값으로 그의 그림을 매각했다. 그가 죽은 지 겨우 일 년도 안 됐을 때 모두 팔아버렸지. 앞으로 그의 가치가 떨어지면 떨어졌지, 오를 일은 없었음을 알았기 때문이야. 딱 그 정도의 화가였다는 걸, 누구보다도 내가 가장 잘 알았으니까! (숨,) 그는 누군가에게 그런 영감을 줄 수 있는 사람이 아니니까. 나는 알아⋯⋯. (젠장, 금단 증상은 꼭 잘못된 때를 골라 치고 들어온다. 며칠 들이키지 않은 염화의 잔향이 손끝에서 묻어나오는 것 같은 착각이 든다. 잘게 떨리는 손으로 본인 턱을 콱 쥔다. 언뜻 보면 입매를 가리는 것으로 보인다.) 나야말로 묻고 싶군. 만난 적도 없는 화가에게 그토록 연연하는 이유가 뭐야? 고작 그림 한 장에 그렇게나 두터운 환상을 씌우려면 대체 무엇이 필요하느냐고. 아하, 지독한 외로움인가? (입꼬리를 비죽 올린다. 비웃는다 해서 기분이 유달리 나아지지는 않는다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 06일 오전 03:22</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">사회에서야 누구든, 무엇이든 대체될 수 있습니다. 하지만 한 사람의 인생 단위에서는 대체할 수 없는 것들이 생깁니다. (대체되지 못한 것들의 무게가 이마를 짓누르는 듯해 그는 찡그린 채 한참이나 말을 멈춰야 했다.) 당신은 모르니까 그런 말을 하는 겁니다…… (무심코 손을 뻗어 입매를 가린 쪽의 팔목을 움켜쥔다. 무슨 짓을 하고 있는지 인지하지 못하는 것처럼 굴면서, 얼굴을 보이라는 듯이 우악스럽게 팔을 잡아당긴다. 이런 식으로 방해를 해결하려 드는 것은 무력을 행사하기 위해 태어난 남자의 우울한 버릇이었다.) 전 외로운 게 아니라…… (분명 이 마음은 외로움과 쌍둥이처럼 닮아 있다. 어쩌면 정말 그뿐일지도 모른다는 생각에, 말을 흐린다. 동시에 손에 들어갔던 힘이 풀린다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 06일 오후 08:46</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그래? 알지도 못하는 사람에게 소속감을 느끼는 네 얄팍한 인생도 참 애처롭군. (미간을 한껏 찌푸린다.) ⋯⋯내가, 그걸 몰라서 이러는 것 같아? ⋯⋯ (눈을 흡 뜬다. 반사적으로 주먹을 콱 쥐어보지만 곧이곧이 끌려가는 걸 막기에는 역부족이다. 위협하는 새처럼 구두굽과 드레스로 덩치를 부풀렸을 뿐인, 그 아바냘레 부인이 이런 류의 강압을 얼마나 경험해 봤겠는가? 얼굴이 종잇장처럼 창백해졌다가, 이내 분노를 견디지 못한 듯 붉으락푸르락해진다. 경악과 울분, 당황, 모욕감 따위가 한데 섞여 얼굴을 일그러트린다. 꼭 침범 당한 것만 같은, 혹은 칼에 찔린 사람과도 같은 얼굴을 하고 있다.) ⋯⋯ (상대의 손에서 힘이 풀리는 순간 팔을 홱 잡아당겨 뺀다. 곧바로 상대의 뺨에 따귀가 날아간다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 07일 오후 05:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(짝 하는 경쾌한 소리와 함께 고개가 돌아간다. 여전히 앞으로 뻗어진 손 안에는 이제 아무것도 없다. 이상한 꿈에서 갑자기 깨어난 사람처럼 멍한 표정으로, 옆얼굴을 보인 채 입을 연다.) 미안합니다. 제 얄팍한 인생이 멋대로 당신에게 흠집을 냈군요. (높낮이가 사라진 목소리는 무기질하면서도 꾸밈이 없다.) 그가 정말 당신에게 아무것도 아니라면 이러지 않을 겁니다. (간밤에 엿본 운명에서 그녀의 곁을 떠돌던 그림자를 떠올린다.) 사람들은 으레 자신의 본질 앞에서 가장 필사적으로 도망칩니다…… 당신은 주세페 씨가 아무것도 아니었길 바라는 겁니다. 아무것도 아니지 않았는데 죽어 버렸다면, 그건 너무 끔찍한 일이니까요.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 07일 오후 10:14</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯주세페 아바냘레는 나의 창조물이야. (반대로 바라보자면 안눈치아타 아바냘레는 그의 유작이다.) 그가 내 이름을 세웠듯이, 내가 그의 모든 것을 만들었다고. 어떻게 그가 내게 아무것도 아닐 수가 있겠어? (핏발 선 눈이 이바르를 노려본다. 무엇이라도 쥐어야만 할 것처럼 뻗은 손이 허공을 잠시 헤매다가, 상대의 손목을 거세게 움켜쥔다. 호흡이 떨린다.) 틀렸다, 그가 나 없이는 아무것도 아닌 거야. 그래서, (그래서, 무슨 말을 하고자 하는가? 나 아닌 누구도 그의 일부를 소유할 수는 없다고? 그 누구도 그를 자신보다 더 이해할 수는 없을 것이라고? 그는 영영 나만의 것이어야 한다고?) 그렇기 때문에, ⋯⋯아, 란첸도르프! 내게 무슨 말을 바라는 거야? 네가 그랬듯 내가 나의 간절함에서 도망쳤다고, 내가 그를 뒤로 했다고?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 08일 오후 08:57</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(고개를 내려 당신의 핏발 선 눈을 마주한다. 손목을 움켜쥔 손을 뿌리칠 기색은 없다. 오히려 힘이 완전히 빠져 있다…… 명백하게 방금의 행위를 후회하고 있는 것이다.) 안눈치아타 씨, 마치 그가 아무것도 아닌 것처럼 굴더니 이제는 너무나도 중요한 것처럼 말하는군요. (뜸 들인다.) 사실은 정말로 중요하지만 어디서 굴러먹던 놈팽이가 그것을 알아보기를 원하지는 않는 겁니까? 이상하군요. 방금까진 당신의 마음이 훤히 보인다고 생각했는데, 지금은 모르겠습니다. (그저 알고 싶지 않은지도 모른다. 타인의 세계에서 또다시 튕겨져 나갈 뿐이라는 사실을.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 09일 오후 02:02</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(혹자가 말하기를, 애정과 증오가 동전의 양면과 같은 이유는 무엇일까? 타인의 세계에 발을 디디는 것은 필연적으로 침범이다. 그런 관점에서 보자면, 당장 안눈치아타의 세계에 가장 가까워진 건 이바르 란첸도르프일지도 모른다. 그가 바라보는 것은 안눈치아타의 케케묵은 수치, 자존심, 제때 토해내지 못해서 똬리를 튼 응어리. 그리고 흐느끼는 숨 사이에서 속삭이기를,) ⋯⋯나를 더 괴롭게 하지마⋯⋯. (주세페 아바냘레는 무엇인가? 그는 아무것도 아닌 동시에 너무나도 중요하다. 그는 보잘 것 없는 화가고, 동시에 잊혀지지 않는 이름이다. 그래! 사실은 안눈치아타 본인도 진실 따위 모른다. 다만 아는 것은 망령들이 늘 그의 등 뒤에 있다는 것, 돌아보는 순간 붙잡히리라는 사실. 진심은 언제나 두서 없다: “모른 체 하지마,”) 마음은 보잘 것 없는 것이라고, 기어코 알려 주어야만 성이 차겠어? (내게는 네가 바라는 정답이 없어, 네가 훤히 들여다보는 것만이 이 얄팍한 마음이 가질 수 있는 전부라고!)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 09일 오후 08:58</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Ivar">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/K4AWaGd.png" alt="profile" /></div>
+    <div class="ttobot-name">이바르 란첸도르프</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">……고작 그겁니까? (맞은 뺨이 화끈거린다. 모른 척할 수 있으면 좋겠다고 생각한다. 종래에는 무대 아래로 떨려날 인생. 밀쳐지기 위해 다가가는 걸음들. 그러나 물리기에는 이미 한참 가깝다. 그래, 한낱 마음, 보잘것없는 마음. 흙바닥을 구르는 구슬. 연약함 같은 것.) 고작 그것 하나를 지키기 위해 이렇게까지 해야 했습니까? (아바냘레 부인을 구성하는 모든 장식과 당신이 내뱉은 모든 거짓말. 한 장의 그림을 좇아, 한 명의 예술가를 좇아, 도착한 곳에서 발견한 건 정작 길 잃어 애닳은 고백뿐이다. 원망을 가장해 내뱉은 문장은 지나치게 나지막해서 마치 낙엽 쓸리는 소리처럼 들린다. 하지만 막을 내리기 직전의 무대 앞, 다시는 만나지 않을 사람에게 단역에 불과한 남자가 건넬 수 있는 말은 얼마 없다.) ……당신을 괴롭게 해서 미안합니다. (마음은 보잘것없지 않다고 말할 수 있었다면 좋았을 것이다.) 다른 것은 몰라도 괴로움만큼은 이해할 수 있습니다. (사랑하는 사람의 죽음에 맞닿아 있는 마음 따위가 얼마나 무력한지 그는 지독하게 잘 알고 있다.) 이건 제가 당신을, 나 자신만큼 불쌍히 여겨도 된다고……, 그런 뜻으로 알겠습니다. (흩어질 사이에 이제 독백에는 아무런 의미가 없다. 그렇기에 마음대로 지껄인다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 10일 오전 03:09</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Abagnale">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/Eq7rhF7.png" alt="profile" /></div>
+    <div class="ttobot-name">안눈치아타 아바냘레</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">⋯⋯다시는 만나지 않길 바라지. (저주 같은 말을 기어코 내뱉을 수밖에 없는 이유는 앎이 두렵기 때문이다. 이해가 두렵기 때문이고, 그에 수반되는 동정이 두렵기 때문이다. 사람을 사람으로 인지하는 순간 모든 허풍과 허언, 거추장스러운 장식은 무용한 것이 되어버리고, 그 자리에는 가죽을 벗겨 볼품없는 마음만이 남는다.) ⋯⋯ (나를 멋대로 불쌍히 여기지 말라 외칠 수 없는 이유는 무얼까? 단역에 불과한 남자 따위가 남길 수 있는 상흔은 없다고 자신할 수 있다면 좋으련만. 무대 아래로 내려가면 사라질 존재라 과신하지만, 운명만은 그들이 재회하리라는 걸 안다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 8월 10일 오전 05:41</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>
