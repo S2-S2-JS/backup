@@ -83,7 +83,7 @@ function buildBootLines() {
   `      } catch (e) {`,
   `      }`,
   `      try {`,
-  `        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");`,
+  `        var saved = JSON.parse(localStorage.getItem("enty-avatars-SD") || "{}");`,
   `        var rules = "";`,
   `        var accounts = ${JSON.stringify(accounts)};`,
   `        for (var name in accounts) {`,
