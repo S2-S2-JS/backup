@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "enty-theme";
+  const STORAGE_KEY = "enty-theme-SD";
   const AVATAR_KEY = "enty-avatars-SD";
   const BRAND_KEY = "enty-brand";
   const HASH_KEY = "theme";
