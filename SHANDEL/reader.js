@@ -143,36 +143,6 @@ const accountOf = id => MANIFEST.characters[id]?.account || id;
       }
     }
 
-    pair.addEventListener("click", () => {
-      const input = document.createElement("input");
-      input.className = "reader-pair-input";
-      input.value = brand.pair || "ENTY";
-      input.maxLength = 40;
-      input.setAttribute("aria-label", "페어명");
-
-      let settled = false;
-      const commit = save => {
-        if (settled) return;
-        settled = true;
-        if (save) {
-          brand.pair = input.value.trim() || "ENTY";
-          writeJson(BRAND_KEY, brand);
-        }
-        input.replaceWith(pair);
-        paintNames();
-      };
-
-      input.addEventListener("keydown", event => {
-        if (event.key === "Enter") commit(true);
-        if (event.key === "Escape") commit(false);
-      });
-      input.addEventListener("blur", () => commit(true));
-
-      pair.replaceWith(input);
-      input.focus();
-      input.select();
-    });
-
     const byFile = new Map(MANIFEST.logs.map(log => [log.file, log]));
 
     function paintLists() {
