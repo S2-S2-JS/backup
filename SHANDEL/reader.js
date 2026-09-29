@@ -134,7 +134,6 @@ const accountOf = id => MANIFEST.characters[id]?.account || id;
 
     function paintNames() {
       pair.textContent = brand.pair || "ENTY";
-      document.title = brand.pair || "ENTY";
       for (const node of document.querySelectorAll("[data-name]")) {
         node.textContent = nameOf(node.dataset.name);
       }
@@ -142,36 +141,6 @@ const accountOf = id => MANIFEST.characters[id]?.account || id;
         button.setAttribute("aria-label", `${nameOf(button.dataset.portrait)} 이미지 바꾸기`);
       }
     }
-
-    pair.addEventListener("click", () => {
-      const input = document.createElement("input");
-      input.className = "reader-pair-input";
-      input.value = brand.pair || "ENTY";
-      input.maxLength = 40;
-      input.setAttribute("aria-label", "페어명");
-
-      let settled = false;
-      const commit = save => {
-        if (settled) return;
-        settled = true;
-        if (save) {
-          brand.pair = input.value.trim() || "ENTY";
-          writeJson(BRAND_KEY, brand);
-        }
-        input.replaceWith(pair);
-        paintNames();
-      };
-
-      input.addEventListener("keydown", event => {
-        if (event.key === "Enter") commit(true);
-        if (event.key === "Escape") commit(false);
-      });
-      input.addEventListener("blur", () => commit(true));
-
-      pair.replaceWith(input);
-      input.focus();
-      input.select();
-    });
 
     const byFile = new Map(MANIFEST.logs.map(log => [log.file, log]));
 
