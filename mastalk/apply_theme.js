@@ -267,33 +267,35 @@ function parseStamp(stamp) {
 
 const logs = [];
 for (const name of files) {
-  const html = fs.readFileSync(path.join(LOGS_DIR, name), "utf8");
-  const count = (html.match(/class="ttobot-status"/g) || []).length;
-  if (!count) continue;
-  
-  // 첫 번째 메시지 블록만 안전하게 가져옴 (타임스탬프 무관)
-  const firstMatch = html.match(/<div class="ttobot-status" data-account="([^"]+)">([\s\S]*?)<\/div>\s*<\/div>/);
-  const accountMatch = html.match(/data-account="([^"]+)"/);
-  const account = accountMatch ? accountMatch[1] : "";
-  
-  const bodyMatch = html.match(/class="ttobot-status"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/);
-  const body = bodyMatch ? bodyMatch[1] : "";
+  const raw = fs.readFileSync(path.join(LOGS_DIR, name), "utf8");
+  // 부트 스크립트 안의 data-account="..." 문자열이 잡히지 않도록 script 제거
+  const html = raw.replace(/<script[\s\S]*?<\/script>/gi, "");
 
-  const avatar = (body.match(/class="ttobot-avatar"><img src="([^"]+)"/) || [])[1] || "";
+  // 말풍선 단위로 분리 (</div>가 닫혀 있지 않아도 안전)
+  const blocks = html
+    .split(/(?=<div class="ttobot-status")/)
+    .filter(b => b.startsWith('<div class="ttobot-status"'));
+  if (!blocks.length) continue;
+
+  const count = blocks.length;
+  const first = blocks[0];
+
+  const account = (first.match(/data-account="([^"]+)"/) || [])[1] || "";
+  const avatar = (first.match(/class="ttobot-avatar"><img src="([^"]+)"/) || [])[1] || "";
   const character = Object.keys(CHARACTERS).find(id => CHARACTERS[id].account === account) || "";
-  const speaker = decode(stripTags((body.match(/class="ttobot-name">([\s\S]*?)<\/div>/) || [])[1] || "")).trim();
-  const text = decode(stripTags((body.match(/class="ttobot-content-text">([\s\S]*?)<\/div>/) || [])[1] || ""))
+  const speaker = decode(stripTags((first.match(/class="ttobot-name">([\s\S]*?)<\/div>/) || [])[1] || "")).trim();
+  const text = decode(stripTags((first.match(/class="ttobot-content-text">([\s\S]*?)<\/div>/) || [])[1] || ""))
     .replace(/\s+/g, " ").trim();
-  
-  const part = (name.match(/_(\d+)\.html$/) || [])[1];
-  const fileTitle = pageTitle(name);
+
+  const dateMatch = name.match(/^(\d{1,2})(\d{2})(?:_(\d+))?\.html$/);
+  const part = dateMatch && dateMatch[3] ? Number(dateMatch[3]) : null;
 
   logs.push({
     file: LOGS_PREFIX + name,
-    month: 0,
-    day: 0,
-    part: part ? Number(part) : null,
-    label: fileTitle,
+    month: dateMatch ? +dateMatch[1] : 0,
+    day: dateMatch ? +dateMatch[2] : 0,
+    part,
+    label: pageTitle(name),
     stamp: "",
     account,
     character,

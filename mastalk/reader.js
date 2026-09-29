@@ -60,8 +60,13 @@
     let brand = readJson(BRAND_KEY);
     let images = readJson(IMAGE_KEY);
 
-    const nameOf = id => 
-      brand.names?.[id] || MANIFEST.characters[id]?.label || MANIFEST.characters[id]?.names?.[0] || id;
+    const nameOf = id =>
+      brand.names?.[id]
+      || MANIFEST.characters[id]?.names?.[0]
+      || MANIFEST.characters[id]?.label
+      || id;
+
+const accountOf = id => MANIFEST.characters[id]?.account || id;
 
     function shrink(file, max) {
       return new Promise((resolve, reject) => {
