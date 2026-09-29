@@ -2,7 +2,7 @@
   "use strict";
 
   const BRAND_KEY = "enty-brand";
-  const IMAGE_KEY = "enty-avatars";
+  const IMAGE_KEY = "enty-avatars-SD";
 
   const SIZES = { banner: 1280, portrait: 640 };
 
