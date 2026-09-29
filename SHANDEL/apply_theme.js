@@ -9,7 +9,7 @@ const ROOT = process.env.ENTY_ROOT || __dirname;
 const LOGS_DIR = path.join(ROOT, "toots");
 const LOGS_PREFIX = "toots/";
 const ASSET_PREFIX = "../";
-const MARK = "enty-theme-boot";
+const MARK = "enty-theme-SD-boot";
 
 fs.mkdirSync(LOGS_DIR, { recursive: true });
 
@@ -65,7 +65,7 @@ function buildBootLines() {
   `        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];`,
   `        var raw = hash`,
   `          ? atob(decodeURIComponent(hash))`,
-  `          : localStorage.getItem("enty-theme") || "{}";`,
+  `          : localStorage.getItem("enty-theme-SD") || "{}";`,
   `        var state = JSON.parse(raw) || {};`,
   `        var mode = state.mode || "auto";`,
   `        if (mode === "auto") {`,
