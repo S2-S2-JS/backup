@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Peishan","char2":"@Delta"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... 내가 너보다 신체적으로는 건강해! (벙쪄있다가 한 발짝 늦게 소리친다.) 곧 방학인데, 할 말이 그런 것밖에 없어? 안녕이라던지, 잘 지내라던지...까지는 안 바라지만.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">그 말이 아니지 않나. (하여튼 끝까지 뻣뻣한 사람이다. 잇따른 말에는 잠시 고민하는 듯 하더니.) 너는... (뜸.) 심약한게 맞아. (확인사살.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(상체 가로질러 팔짱 낀다. 불만인지 혼란인지, 미간 조금 찌푸리다 핀다.) 그러니까... ... 왜? ... ...</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">넌 까칠하고 자기 밖에 모르는 부르주아가 되기엔 마음이 너무 약하다. 내가 보기엔 그래. (목적을 알기 어려운 말이나 되뇐다.) ... 쉬는동안 집에서 돈 날리고 놀면서 심신 안정이나 해라. 아무래도 너와는 졸업할 때까지 계속 엮일 것 같으니까. (나름의 '방학 잘 지내라.'가 아닐까?)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(영 가늠이 안간다는 듯 바라보다가, 끝에 가서는 표정이 풀어진다. 눈 동그랗게 뜨다 헤실 웃는다.) 아~하! 졸업 때까지 나랑 엮여도 괜찮다는 뜻? 나, 너한테 나름 잘 보였다고 생각해도 될까? 네가 한 말이야, 나중에 무르면 안돼. (혼자 마구 떠들다가는 딱 다문다.) 으음, 그러니까... 너도, 방학 동안 건강하게 잘 지내. (건강하게,에 강세 둔다.)</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

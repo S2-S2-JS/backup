@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2월 11일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Peishan","char2":"@Delta"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">못본 새에 많이 변했어. (느릿느릿 따라 걸으며 호칭을 고민한다.) ... 아유타야.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(더는 그 호칭을 정정하려 들지 않는다. 눈에 보이는 불쾌한 기색 또한 없다.) 너는 참... 여전해 보이는군. (당신을 내려다보는 눈높이가 1cm도 달라지지 않았다. 10년동안 많은게 달라졌어도 신장만은 변한 것이 없다. 너도, 나도. 그 사실에 그만 픽 웃음이 난다.) 루크리 재단 이사치고는 싸구려를 하고 다니는군 그래. (귀에 걸린 것을 보고는 괜히 하는 말이다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">누구와 다르게 별 풍파없이 살았거든. (왜, 좀 변할 걸 그랬나? 장난스럽게 지껄이고는 입 가만 다문다. 텀블러 꺼내서 한 모금 마시고서야 활짝 마주 웃는다. 나긋나긋하게 이어지는 어조.) 조금 더 친절하게 굴어 줘, 내가 싸구려를 하고 왔잖아.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(코를 달싹인다. 알코올 향의 주범을 찾아낸 그는 텀블러의 입구를 막는다. 그대로 슥 들어올려 당신의 손아귀에서 빼낸다. 압수.) 풍파가 정말 하나도 없었나보군. 선택한 해결책을 보니. (술을 애지중지 들고 다니는 사람은 대체로 두 부류가 아닌가 싶다. 시련을 너무 많이 겪었거나, 시련이 존재하지 않는 환경을 타고나 원초적인 자극에 의지하거나.) 싸구려 말고는 할 수 없었던 건 아니고?</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아악! 안돼! (방심하다 허무하게 텀블러 뺏긴다. 들어올려진 텀블러 향해 손 뻗어보다 순순히 그만둔다.) ... 야! (소리 한 번 지르고 입술 잘근잘근 씹는다.) 돌려줘, 제발. 응? 이거 도둑질이야. 고소할거라고. (되는대로 입 나불대다가 딱 다문다. 페이샨 루로 따지자면, 큰 고난없이 자라 작은 시련에 주저앉는 류일테다.) ... 지금 시비라도 걸자는 거야?</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(텀블러를 들어올린 채 여상한 낯으로 내려다본다. 그리고 잠시 상념에 빠진다. 머리 속에서는 이런저런 추측이 오가는데, 고민하는 주제는 이거다. '왜 이렇게 됐지?') 시비를 걸고 싶었으면 다른 점을 걸고 늘어졌을 거다. 궁금했을 뿐이야. 오늘도 아티팩트라는 변명이 필요했는지. (아, 나는 어쩌면 알고 있었을지도 모르겠다. 심약하다는 말을 두 번이나 한 시점에서. 그 깨달음을 마지막으로 상념은 끝이 난다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... 너도 임무가 끝날 때까지 그걸 들고 있을 생각은 아닐 것 아냐. 돌려주면 안될까? 제발. 응? 내, 내가 긴장으로 토해주길 바라? 보여줘? (상대라면 그럴지도 모르겠다 생각했는지, 표정이 점차 다급해져간다. 붉으락 푸르락 하는 낯빛은 덤. 애걸하려다, 회유하려다, 어쩌면 협박성 어조를 띄다가는 입 꾹 다문다. 손이 떨리기 시작하길래 맞잡는다. 불안이 급격히 온몸을 타고 오른다.) ... 안 돌려주면 답 안 할래.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">.. 긴장하고 있나? 무엇에. (말마따나 임무가 끝날 때까지 들고 있을 심산은 아니다. 그러나 아직은 돌려줄 생각이 없는 것이 자명했다. 꼭 이렇게 말하는 듯한 태도다. '도망치지마. 직면해라.') 10년 전에는 귀여운 구석이라도 있었던 것 같은데. 지금은 꽤... (뜸.) 마음이 아프군.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">델타 아유타야께서는 이해 못할 종류에. (몰라서 물어? 가벼운 핀잔, 현재의 불안 탓에 미약한 짜증이 섞인다. 뺏긴 텀블러만 한참을 노려본다. 마냥 도망치지 못하는 이유는 단지 의존 대상이 인질 잡힌 탓이다. 엇박으로 숨 들이쉬고 내쉰다. 슬슬 긴장에 시야가 좁아진다. 점차 차가워지는 손끝 느낀다.) ...어느쪽이든 당장 듣고 싶은 말은 아닌데, 아예 하찮게 여겨주심은 안되나? 그냥 무시해. 쉽잖아. 너는.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이해는 둘째 문제고, 뭐가 원인인지 알아야 해결을 해주던가 괜한 참견이었다고 사과라도 할 것 아닌가. (당신에게 내미는 것은 그토록 바라던 텀블러가 아닌 빈손이다. 그대로 당신의 손을 감싸잡는다. 양극의 감정을 담은 돌발 행동이었다. 혹여 도망갈까봐. 동시에 떠는 것이 안쓰러워서. 사람이라기엔 차갑고 송장이라기엔 따뜻한 손아귀다.) ... 그렇게는 안 되겠는데. 어쩌지?</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... (반사적으로 한 발짝 물러나려다 만다. 순순히 손 내어주고는 혼란스럽게 눈 깜빡인다. 피차 손 찬 입장에서야 미지근한 온기다. 가장 비인간에 가까워 보이던 존재또한 인간이라는 기이한 실감.) ... 네가 저번에 너만 믿으라 했을 때는, 별 도움 안됐는데. (십 년 전의 실습으로 거슬러 올라가는 괜한 트집.) 어떻게 해결해주려고? 내가 말한다고 뭐가 그렇게 달라지는지 모르겠어. (습관적으로 손 꼼지락대려다 감싸쥔 손아귀에 막힌다. 내쉬는 숨이 길다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/JXsff78.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이번에도 그때랑 같은 이유다? (10년 전이라면 이렇게 집요하게 굴었을까? 사람이 사는 방법은 세상의 사람 수만큼 있으며, 그게 네가 살아가기로 한 방법이라면 틀렸다고 말할 생각은 없다던 사람은 어디로 사라졌는가. 이 모습은 뭐랄까... 참 구질구질하다.) 내가 해결 못해줄 문제면 놓아주겠다. 다만, 이 답변조차 피하겠다면 나는 네가 회피를 선택할때마다 널 쫓아갈거다. (붙잡았던 손을 조금 더 느슨하게, 그러나 풀리지 않을 정도의 힘으로 쥔다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/folLETD.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">...... 왜 이렇게 변했지? (완전한 동문서답. 변화를 극도로 꺼리는 이가 문득 중얼거리기를, '이렇게'와 '변했지?' 둘 다에 공평히 강세를 넣었다. 손 빼내는 것을 금세 체념한다. 엇박을 타던 호흡이 차차 돌아온다. 머리 굴리는 소리가 나기 시작한다는 뜻이다.) 불안에 언제나 분명한 이유가 있지는 않아. 그래, 내가 고작 고등학교 실습에도 긴장하던 사람이라는 것 쯤이야 너도 봤잖아. 설마 실제 임무에서 긴장을 안할리도 없지. 그러니까... 네가 해결해줄 수 있는 종류는 아냐. 해결하기에는 너무 범위가 광활하고, 이유는 불분명하고, (간극.) 넌 그만큼 대단하지 않고. ... 그렇지? (술술 읊어대다가 마지막에 이르러서야 제법 노골적으로 눈치를 본다. 조심스레 낯을 살피던 시선이 옆으로 구른다.)</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

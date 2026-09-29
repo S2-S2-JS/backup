@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1월 25일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Peishan","char2":"@Delta"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(어슬렁...) 구석이 좋아, 중앙이 좋아?</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... 빈자리면 어디든 상관없다. 그러는 넌... (물끄럼...) 어디든 안 좋아보이는군.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">응, 뭣하면 내 자리 주려고 물어봤어. (벽면에 놓인 침낭 가리킨다.) 나는 이곳에서 벗어날거야.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">벗어나서 갈 곳은 있나? (무덤하게 묻고는 남은 손으로 주머니를 뒤진다. 바스락거리는 소리가 이어지더니, 이내 당신에게 무언가를 휙 던진다. 슬롯으로 뽑은 젤리 두개.) 지금 안 먹을거여도 네가 가지고 있어라. 매번 저녁 거르시는 분이 돌아간다고 잘 챙겨먹을 것 같지는 않군.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">설마 그런게 있겠어? 그냥 여기서 자기 싫다는거지. (실제로 가지도 않을거면서 말로만 이런다. 던져주는 젤리 착 받는다.) 어엇, 나 지금 밥 못 챙긴다고 동정받고 있는거야? 고마워, 잘 먹을게...</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(적당히 남은 자리에 한 손으로 침낭을 던져놓고는 고개를 숙인다. 언제쯤 멎을 생각이지...) 루크리 가문 고명딸이 배불러서 죽은 것도 아니고 아사했다는 기사가 나면 꼴이 우습지 않겠나. (농담치곤 표현이 과격하다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(침낭 던져두고는 장난스럽게 가벼운 한숨 쉰다. 그러고도 계속 알짱대다가, 생각났다는 듯 휴지 건넨다.) 맞다, 일부러 챙겨뒀었거든. ...여기 더러울까봐. (제대로 된 말은 "너 때문에"나 "보답" 쪽에 가까웠을 것. 손에 쥐고 내민 채로 가져갈 때까지 쳐다본다.) ...다만, 그렇게 말하면 좀 주기 싫을 것도 같다. 걱정을 할거면 곱게 하고, 저주를 할거면 아주 저주를 해. (농조.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(뭐... 할 말이라도 있나? 알짱거리는 것을 말없이 빤히 바라보다가... 건네는 것이 시야에 들어오면 검지와 중지로 슥 빼내어 간다. 감사 인사는 생략.) 새삼... 성격 나쁜거 하루 이틀 보나. (그러다 문득 미간에 힘이 들어가는 것이 꼭 어딘가 불편한 사람같다.) 음... 잠깐... 나가지. 어차피 너도 여기 있기 싫은거 아니었나.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(내심 감사인사를 기대했다. 말없이 빼내어 가는 것 보고 눈썹 한쪽만 쓱 치켜올린다.) 넌... 성격 나쁘다는 걸 알면서도 변함없다는 점에서 죄가 크다. (본인이 할 소리인가? 이어지는 말에는 잠시 멈칫한다.) 앗, 음. 엇, ...응! 여기 있기 싫었던 건 맞는데, 옥상으로 따라와...같은 건 아니지? 내가 뭐 잘못한 건 아니지? (두 걸음 정도의 거리를 둔 채 순순히 밖으로 걸음을 옮긴다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(미묘한 표정 변화를 눈치챘으나... 그럼에도 입을 꾹 다문다. 악질이 따로 없다.) 그래, 같은 죄인 처지에 너무 뭐라고 하지 말자고... (오해에는 넌 나를 뭐라고 생각하고 있는 건가. 하고 짧게 면박을 준 뒤 체육관의 문을 열어 제낀다. 숨을 크게 들이쉬면 혈향을 가르고 새벽의 축축한 공기가 폐부를 가득 채운다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">내 성격이 너보다는 좋다고 생각해. (눈 한 바퀴 굴리면서 양심없는 말 한다. 그야, 널 나보다도 성격나쁜 사람이라 생각하고 있지... 실없는 소리 한 번 하고, 쌀쌀한 새벽 공기에 눈살 조금 찌푸린다. 싱그러운 풀내음이나 새벽 이슬의 살짝 비린 향, 낯선 풍경을 꺼려야 할지 반겨야 할지 고민한다.) 난 나름 잘 보이려 하고 있는데, 협조 좀 해줘. (농.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... 나름 잘 보이려고 하고 있다는 점에서 네가 나보다는 낫다는 게 증명된 셈이군. (양심없는 말을 꽤 진지하게 수긍한다.) 그런데 특기는 어찌하여 쓰지 않고. 안 통할 것 같은가? (당신의 특기라 함은, 돈으로 매수하기 쯤으로 생각하고 있는 모양이었다. 주변에 하늘을 가리는 고층 건물이 없다는 것. 매캐한 도시의 냄새가 느껴지지 않는다는 것. 눈을 찌르는 인공 광원이 존재하지 않는다는 것. 그는 문명에 벗어났을때 비로소 편안해 보이는 얼굴을 하고 있었다. 피는 여즉 멎지 않았지만.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(새삼 생각하기를, 델타와의 대화는 이걸 수긍해주네? 와 이걸 안받아주네? 의 연속이다.) 돈으로 모든 걸 이룰 수 있는 건 아니라 한 건 너잖아. 네 의견에 아주 동의하는 건 아니지만— (자존심.) 투자만큼의 소득이 안나오리라 짐작했을 뿐이야. 아유타야라면, 가문 단위로는 내가 혼자 쓸 수 있는 돈을 능가하기도 할테니... 네가 돈이 궁한 처지도 아닐테고. (특기가 매수하기라는 것쯤은 고분고분하게 수긍하고, 주절주절 열심히도 논리를 늘어놓는다. 편안한 얼굴과 줄줄 흐르는 피, 대체 어디에 집중을 두어야 할지 가늠하다 만다.) 넌 차라리 여유가 궁해보인다.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(6년이나 끼고 살았던 아유타야 조차도 양아들의 행동패턴을 파악하는건 실패했으니, 당연한 반응일지도 모른다.) 그걸 그렇게 귀담아 들었을 줄은 몰랐군. 투자만큼의 소득이 나오지 않으리라는 건 보장하지. (건네받은 휴지를 잘 겹쳐 콧등을 누른다. 선혈이 물드는 속도가 빠르지 않은 것을 보니, 조만간 멎을 모양새다.) 여유... 좋지. 다만... (간극.) 그걸 바라면 프로메테우스에 오지 않았어야지. (냉철하게 재단하는 것은 예외가 없었다. 그것이 본인의 일이라도. 그러다 문득 묻는다.) ...넌 왜 왔지? 돈까지 쥐어줘가면서.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">귀담아 듣기를 바란 줄 알았는데. 아니었어? (좀 섭섭하다, 마음에도 없는 소리 덧붙인다. 그 와중에도 콧등 누른 손과 붉게 물들어가는 휴지 계속 힐끔대다가는, 질문을 받고서야 정면을 바라봤다.) '왔다'보다는 '보냈다'라고 하자. 여기 쓰인 돈도 내 돈은 아니었거든, 부모님 돈이지. 능력이 있든 없든, 이름 난 집안 출신은 대부분 그럴걸? 본인 의사보다는~ 집안 이미지를 유지해야하는 의무같은게 아닐까. (손가락 딱! 튕기는 소리 낸다.) 너는 아냐? 네가 자의로 원서 낼 이미지는 아니란 말이지. "나는 배울게 없다." 할 것 같고... (주절주절.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">들은 체도 안해도 신경 안 쓸 생각이었다만. (다만 귀담아 듣는 척이라도 했으니 앞 뒤 꽉꽉 막힌 부르주아 이미지는 벗었는지도 모르겠다.) ... 그거 내 흉내라고 낸 건가? (뜸.) ... 달리 반박할 말은 없군. 나라고 크게 사정이 다른 것도 아니고. (입 안까지 맴돌던 비릿한 맛이 잦아든다. 코에서 휴지를 떼어내면 더이상 흘러내리는 것은 없다. 마른 부분으로 갈무리를 하고 나면, 늘 보던 그 낯짝으로 돌아온다.) ... 이거, 고맙다고 말해두지. (참 빨리도 말한다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">잘 보이고 싶었대도. (물론, 앞뒤 꽉꽉 막힌 부르주아가 맞다. 우연히도 이미지가 벗겨졌으니 페이샨으로서는 감사해야 하는 일일 수도 있다.) 고맙다고 미리 말했다면 과거형이 아니라 현재진행형이었을텐데, 유감스러운 일이야. (그러한 내용치고는 즐거운 표정이 꽤 투명하다.) 아바타 가문들은 참 신기하더라. 가문의 명맥은 그렇게나 중요한데, 핏줄은 하나도 중요치 않잖아. 결국 친자든 양자든 하는 일은 비슷비슷하기까지 하지. (해학보다는 공감의 어조다. 돈으로 사람을—에 대한 나름의—또다른—사과일테다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... (얼굴 얇이가 지갑만큼 두껍지는 못한 것 같군. 그 투명한 얼굴을 보며 생각했다.) 그래서, 이제 잘 보이기는 끝인가? (부잣집 아가씨면서 꼭 빚 못 갚아서 안절부절인 사람처럼 구는게 영 신경쓰였다.) 그들에게 가문을 묶는 것은 더이상 유전자적 정보도, 같이 쓰는 이름도 아니니까. ... 알파겠지. (공감임은 알았다. 그러나 그 너머의 무언가가 짐작이 가지만 확실치 않은 것이다. 그리고 여기까지 생각이 닿으면, 그런 감상이 들고 마는 것이다.) 그렇게 심약해서 나중에 기업 대 기업으로 싸움은 어찌 하려고.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">어라, 내가 그만두면 좋겠어? (눈 동그랗게 뜬다. 진심으로 놀랐다기보다는 빈말이었다는 어떠한 의지표명.) ... 내가 심약한 편은 아닌데, 어디서 그렇게 보였을까... (걸리는 게 없어서 하는 말은 아니다.) 뭐, 어차피 내가 기업을 물려받을 사람도 아닌걸. 상관없어. 내 위에만 형제가 둘인데, 나한테 기회가 있을리도 없고~ 하고 싶지도 않고. 난 너와 다르게 몸 사리면서 돈 뿌리고 사는게 좋거든. (여상하게 깜빡인다.) 그래서 그런데, ... 너는 왜 그렇게 열심히 해? 건강에 돈 써야한다기에는 악화시키는 일만 파다하고, 가문에 애착이 있다기에는 회의밖에 안보이던데.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">... 하고 싶은대로 해라. ('내가 어떻게 해라 명령할 처지도 안 되고, 어떻게 하란다고 네가 그렇게 할 것 같지도 않다.' 그런 의중이다.) 평생 몸 사리면서 돈 뿌리고 살고 싶었으나 프로메테우스에 입학하게 된 과거의 페이샨에게 유감을 표하지. (그래서 그렇게 매번 실습만 되면 볼멘소리를 냈던가. 얼추 생각은 하고 있었으나, 역시 예상을 벗어나지 않는다.)
+(질문에 대한 답은 덤덤한 낯으로 이어간다.) 시발점은 세상을 위해 헌신하는게 아바타로서 응당 해야 할 일이라는 생각이다. 아유타야의 제안을 받아들인건 오를 수 있을 만큼 오르고픈 나의 욕심이다. 몸을 사리지 않는건... 최악의 경우가 두렵지 않아서다.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(대가없는 헌신, 희생을 불사할 의지. 페이샨 루는 영영 이해하지 못할 삶의 방식이 그의 앞에 있다. 그가 보다 염치있는 사람이었다면 본인의 삶에 있어 부끄러움이라도 느꼈을지 모르겠으나,) 대단하네. (하고 만다. 빈말은 아니다만, 그리 들리기는 쉽겠다.) 죽음이 두렵지 않아? 넌 정말, 모든 세속적인 가치가 네게 의미가 없다는 것처럼 말한다. 생불이라 불러드려야 하나. 무소유라도 실천하시겠다는 건지... (아니, 비아냥댈 생각은 아니었는데. 잠시 입가를 가린다. 이유를 따지자면, 본인과 같이 돈 따위에 얽매이지 않는 '고결한' 이들을 견디지를 못하여...) 어디까지 오르고 싶은게 네 욕심인데? 어디까지 오르든간에, 죽으면 다 아무짝에도 소용없는 일이잖아. 난 죽는게 제일 무섭던데, 대체 어떻게 그럴 수 있지?</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">생물이 죽음을 두려워 하는건 본능이다. 자연의 섭리지. (그렇다면 본인은?) 가진게 많으니 오죽하시겠나, 죽어서 들고 갈 수 없는 것을 많이 소유하고 있을수록 종언은 두려운 법이다. (말하는 것만 보아서는 당신이 말한 그대로 무소유의 실천, 생불 꼴이다.) … 난 내가 한계까지 오를 수 있기를 바란다. 그것의 수치는 중요하지 않아. (그리고… 잠시 침묵이다. 죽음을 두려워 않는 것은 생불, 무소유 같은 사유가 아니었다. 되려 그는 끊임없이 번뇌했다. 돌아갈 수 없는 고향에 대한 번뇌. 제 선택을 후회하지는 않는다지만, 사무치는 그리움이 드는 것은 별개였다. 그러니 감히 생각하고 마는 것이다. 내 마음은 느끼지 못할 지언정, 내 몸을 구성했던 물질들이 고향으로 돌아갈 수 있다면. 그것만으로도 족하지 않을까. 하고.) ... 넌 나를 이해할 수 없겠지. 할 필요도 없다만.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아하, 불세출의 천재는 생물조차도 초월하셨다는 뜻이렸다. (무미건조하게 중얼거린다. 이해할 수 없는 것에 비아냥대던 성질을 못 버려서 그렇다.) 그럼, 죽어서 들고 갈 수 있는 것으로는 무엇이 있는데? 넌 네가 오를 그 '한계'는 시간조차도 뛰어넘을 것처럼 말하고 있잖아. 네가 이 세상에서 이룩할 그 무엇도 물질적인 범위를 벗어나지는 못할텐데... ...왜 다들 존재조차 않는 것에 아등바등하는 듯 구는걸까? (마지막은 혼잣말에 가까운 질문이다. 비단 상대가 중요한 질문은 아닐테다. 허상을 향한 갈망, 물질적 가치에 대한 평가절하, 죽음을 넘어설만한 소신, 등등... 본인의 맹신을 반대하는 것들에 대한 막연한 반감으로, 구태여 이 시점에 표출되는 이유는 없다. 상대보다는 본인한테 잘못이 있다.) 무엇보다도 이해를 하고 싶은지를 따지는 것이 먼저 아니겠어. 너도 나도, 서로를 이해하고 싶지는 않을 것 같아.</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

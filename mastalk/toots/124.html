@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1월 24일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@Peishan","char2":"@Delta"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">같이 먹자. (거절하기 전에 냅다 식판 갖고서 같은 테이블에 앉고 본다. 침묵.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">? (그 모습도 물끄럼 보다가...) 친구가 없나? (악의없는 물음이다.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이건 같은 날의 다른 타래예요.</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아, 아 치사해. 지금 나는 벌레 취급을 당했는데!</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Delta">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/C7Ort0C.png" alt="profile" /></div>
+    <div class="ttobot-name">델타</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아... (자기도 벌점 먹을 각오하고 들고 왔는데 착실하게 벌레?들?만 벌점먹이는가. 모르쇠 하고 감.)</div>
+  </div>
+
+<div class="ttobot-status" data-account="@Peishan">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://i.imgur.com/KZ411UH.png" alt="profile" /></div>
+    <div class="ttobot-name">페이샨</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(이브 덥썩 잡고 델타 보여줌.) 벌점 제도를 사적 용도로 이용함. 벌점 10점 줘.</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>
