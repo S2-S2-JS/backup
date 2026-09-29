@@ -266,39 +266,35 @@ function parseStamp(stamp) {
 }
 
 const logs = [];
-
 for (const name of files) {
   const html = fs.readFileSync(path.join(LOGS_DIR, name), "utf8");
   const count = (html.match(/class="ttobot-status"/g) || []).length;
   if (!count) continue;
+  
+  // 첫 번째 메시지 블록만 안전하게 가져옴 (타임스탬프 무관)
+  const firstMatch = html.match(/<div class="ttobot-status" data-account="([^"]+)">([\s\S]*?)<\/div>\s*<\/div>/);
+  const accountMatch = html.match(/data-account="([^"]+)"/);
+  const account = accountMatch ? accountMatch[1] : "";
+  
+  const bodyMatch = html.match(/class="ttobot-status"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/);
+  const body = bodyMatch ? bodyMatch[1] : "";
 
-  const first = html.match(
-    /<div class="ttobot-status" data-account="([^"]+)">([\s\S]*?)<div class="ttobot-time">([^<]*)<\/div>/
-  );
-  if (!first) {
-    console.warn(`  주의: ${name} 첫 메시지를 읽지 못했습니다.`);
-    continue;
-  }
-
-  const [, account, body, stamp] = first;
   const avatar = (body.match(/class="ttobot-avatar"><img src="([^"]+)"/) || [])[1] || "";
   const character = Object.keys(CHARACTERS).find(id => CHARACTERS[id].account === account) || "";
   const speaker = decode(stripTags((body.match(/class="ttobot-name">([\s\S]*?)<\/div>/) || [])[1] || "")).trim();
   const text = decode(stripTags((body.match(/class="ttobot-content-text">([\s\S]*?)<\/div>/) || [])[1] || ""))
     .replace(/\s+/g, " ").trim();
-
-  const when = parseStamp(stamp.trim());
+  
   const part = (name.match(/_(\d+)\.html$/) || [])[1];
+  const fileTitle = pageTitle(name);
 
   logs.push({
     file: LOGS_PREFIX + name,
-    month: when ? when.month : 0,
-    day: when ? when.day : 0,
+    month: 0,
+    day: 0,
     part: part ? Number(part) : null,
-    label: when
-      ? `${when.month}월 ${when.day}일` + (part ? ` (${Number(part)}편)` : "")
-      : name.replace(/\.html$/, ""),
-    stamp: stamp.trim(),
+    label: fileTitle,
+    stamp: "",
     account,
     character,
     speaker,
