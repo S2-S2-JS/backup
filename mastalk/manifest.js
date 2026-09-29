@@ -1,14 +1,14 @@
 window.ENTY_MANIFEST = {
   "characters": {
     "char1": {
-      "label": "페이샨",
+      "label": "페이샨 루",
       "names": [],
       "account": "@Peishan",
       "side": "left",
       "gens": []
     },
     "char2": {
-      "label": "델타",
+      "label": "델타 아유타야",
       "names": [],
       "account": "@Delta",
       "side": "right",

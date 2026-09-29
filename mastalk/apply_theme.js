@@ -17,8 +17,8 @@ fs.mkdirSync(LOGS_DIR, { recursive: true });
 // 색상 코드는 홈페이지 내부에서 직접 수정이 가능하니 반드시 여기서 설정할 필요는 없습니다.
 // 아래 CHARACTERS를 하나라도 수정했을 경우에는, node apply_theme.js 를 실행합니다.
 const CHARACTERS = {
-  char1: { label: "페이샨", account: "@Peishan", side: "left", colorLight: "#c289e8", colorDark: "#6c1da1" },
-  char2: { label: "델타", account: "@Delta", side: "right", colorLight: "#86b0ab", colorDark: "#197d71" },
+  char1: { label: "페이샨 루", account: "@Peishan", side: "left", colorLight: "#c289e8", colorDark: "#6c1da1" },
+  char2: { label: "델타 아유타야", account: "@Delta", side: "right", colorLight: "#86b0ab", colorDark: "#197d71" },
 };
 
 {
